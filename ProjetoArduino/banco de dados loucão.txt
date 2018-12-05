@@ -1,0 +1,67 @@
+create table leitura1 (
+ id int primary key autoincrement,
+ temperatura dec,
+ umidade dec,
+ hora timestamp
+ ) ;
+
+create table leitura1 (
+ id int IDENTITY (1,1) NOT NULL,
+ temperatura varchar (5),
+ umidade varchar (5),
+ hora time
+ ) ;
+
+
+
+onnected to Database!
+Establishing connection to Database...
+Error: Global connection already exists. Call sql.close() first.
+    at Object.connect (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\mssql\lib\base.js:1622:31)
+    at Promise (C:\Users\HOME\Desktop\transporte-alimenticio\Database.js:13:21)
+    at new Promise (<anonymous>)
+    at Object.query (C:\Users\HOME\Desktop\transporte-alimenticio\Database.js:11:17)
+    at router.get (C:\Users\HOME\Desktop\transporte-alimenticio\routes\leitura.js:40:14)
+    at Layer.handle [as handle_request] (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\index.js:281:22
+GET /leitura/dt?_=1540926820013 400 17.441 ms - 47
+Establishing connection to Database...
+Error: Global connection already exists. Call sql.close() first.
+    at Object.connect (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\mssql\lib\base.js:1622:31)
+    at Promise (C:\Users\HOME\Desktop\transporte-alimenticio\Database.js:13:21)
+    at new Promise (<anonymous>)
+    at Object.query (C:\Users\HOME\Desktop\transporte-alimenticio\Database.js:11:17)
+    at router.get (C:\Users\HOME\Desktop\transporte-alimenticio\routes\leitura.js:40:14)
+    at Layer.handle [as handle_request] (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\HOME\Desktop\transporte-alimenticio\node_modules\express\lib\router\index.js:281:22
+GET /leitura/dt?_=1540926820014 400 6.173 ms - 47
+Query succeded!
+
+
+create table leitura2 (
+ id int IDENTITY (1,1) NOT NULL,
+ temperatura float,
+ umidade float,
+ hora time
+ ) ;
+1 Daniel Rufino daniel15 secreta15
+2 Juliana Bezerra julianabzr juliana5929
+3 Ruben de Castro ruben123 password
+4 Claudia Matsuda claudia29 duda123
+5 Leandro Jurgilas leandro12 
+
+insert into modelo_user (nome, usuario,senha)
+    values ('José','admin','1234')
+
+create table leitura (
+ id int IDENTITY (1,1) NOT NULL,
+ temperatura float (5),
+ umidade float (5),
+ momento datetime
+ ) ;

@@ -1,0 +1,9 @@
+.info {
+    font-size: 20px;
+    font-family: sans-serif;
+
+}
+
+.btn:hover {
+    cursor: pointer;
+}

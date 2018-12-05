@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br; en" id="home">
+   	<head>
+      	<title>Index</title>
+     	<meta charset="UTF-8">
+   	    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+      	<meta name="msapplication-TileColor" content="#ffffff">
+      	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+      	<meta name="theme-color" content="#ffffff">
+      	<!-- jQuery -->
+      	<script src="assets/js/jquery-3.3.1.min.js"></script>
+      	<script src="assets/js/jquery-ui.js"></script>
+      	<!-- Popper -->
+      	<script src="assets/js/popper.min.js"></script>
+      	<!-- Bootstrap -->
+      	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      	<script src="assets/js/bootstrap.js"></script>
+      	<!-- Font Awesome -->
+      	<link rel="stylesheet" href="assets/css/font-awesome.css">
+      	<script src="assets/js/7df7e1332b.js"></script>
+      	<!-- FONTS  -->
+      	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+      	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+      	<!-- CSS -->
+      	<link rel="stylesheet" href="assets/css/jquery-ui.css">
+      	<link rel="stylesheet" href="assets/css/style.css">
+   	</head>
+   	<body id="body">
+      	<div class="row">
+        	<div class="col-md-12 mx-auto">
+				<div class="row">
+					<div class="info col-md-12">Tela logada linda maravilhosa!</div>
+					<div class="info col-md-12">Informações do cookie:</div>
+					<br><br>
+					<div class="info col-md-12">Olá <b><%= session.user.nome %></b>!</div>
+					<div class="info col-md-12">Seu nome de usuário é <b><%= session.user.user %></b> e seu id é <b><%= session.user.id %></b>!</div>
+				</div>
+				<br>
+                <div>
+                    <button class="btn btn-danger" type="button" onclick="logout();">Logout</button>
+                </div>
+         	</div>
+      	</div>
+        <script src="assets/js/main.js"></script>
+        <script>
+            
+        </script>
+   	</body>
+</html>

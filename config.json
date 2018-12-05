@@ -1,0 +1,23 @@
+{
+    "database": {
+        "server": "transporte-alimenticio.database.windows.net",
+        "user": "bandtec",
+        "password": "Projeto01",
+        "database": "transporte-alimenticio",
+        "options": {
+            "encrypt": true
+        }
+    },
+    "database2": {
+        "server": "pedropadilha.database.windows.net",
+        "user": "pedropadilha13",
+        "password": "Banco123",
+        "database": "notetrak",
+        "options": {
+            "encrypt": true
+        }
+    },
+    "security": {
+        "key": "CHAVE_SEGURANCA"
+    }
+}

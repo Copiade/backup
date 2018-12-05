@@ -1,0 +1,259 @@
+<!-- programa da tela de gráficos -->
+<!DOCTYPE html>
+<html lang="pt-br; en" id="home">
+
+<head>
+		<script type="text/javascript" src="jquery.js"></script>
+
+		<script type="text/javascript"></script>
+		
+		<link rel="shortcut icon" href="imagens/favicon (2).ico" >
+
+	<title>Gráfico</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!-- bibliotecas -->
+	<!-- jQuery -->
+	<script src="assets/js/jquery-3.3.1.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+
+	<!-- Popper -->
+	<script src="assets/js/popper.min.js"></script>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<script src="assets/js/bootstrap.js"></script>
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="assets/css/font-awesome.css">
+	<script src="assets/js/7df7e1332b.js"></script>
+
+	<!-- FONTS  -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="assets/css/jquery-ui.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- Google Chart Library -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<!-- Start of silicon14 Zendesk Widget script -->
+	<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=697c5402-9943-469a-a5a9-3eb79f4e3636"> </script>
+	<!-- End of silicon14 Zendesk Widget script -->
+</head>
+<!-- tela e background -->
+<style>
+	body {
+		background-image: url("imagens/fundo2.jpg");
+
+	}
+</style>
+<!-- tags q alteram design do site -->
+
+<body id="body" onload="iniciar()">
+	<nav class="navbar navbar-expand-lg navbar-light bg-inverse" style="height: 3.6em">
+		<a class="navbar-brand" href="#">
+			<!-- insere a logo no site -->
+			<img src="imagens/logo2.png" alt="Logo" width="100" height="90" style="margin-top: -0.2em; margin-left: -1.7em">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+		 aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="login.html" style="color: white; margin-top: 2.4em">
+						<b>Gráfico</b>
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li>
+					<div id="div_usuario" style="display: none; color: white; margin-left: 60em; margin-top: 1.6em">
+						<div style="font-size: 3ch">Bem vindo(a),</div>
+						<b id="b_usuario"></b>
+					</div>
+
+					<div>
+						<span class="form-control btn btn-info" style="width: 4em; margin-left: 70em; margin-top: -6em; background-color: black">
+							<a href="/logout" style="color: white">
+								<b>Sair</b>
+							</a>
+						</span>
+					</div>
+				</li>
+			</ul>
+
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="div_grafico" style="margin-left: 12em"></div>
+
+	<div class="container" style="margin-top: 2em; width: 8cm ; background-color: black; margin-left: 60em; margin-top: -15em; color: white">
+		<b>Médias:</b>
+		<br>
+		<!-- gera topicos -->
+		<ul>
+			<li>Média da Temperatura:
+				<b id="b_media_temperatura"></b>
+			</li>
+			<li>Temperatura Máxima:
+				<b id="b_max_temperatura"></b>
+			</li>
+			<li>Temperatura Mínima:
+				<b id="b_min_temperatura"></b>
+			</li>
+			<li>1º Quartil da Temperatura:
+				<b id="b_q1T_temperatura"></b>
+			</li>
+			<li>Mediana da Temperatura:
+				<b id="b_q2T_temperatura"></b>
+			</li>
+			<li>3º Quartil da Temperatura:
+				<b id="b_q3T_temperatura"></b>
+			</li>
+
+			<li>Média da Umidade:
+				<b id="b_media_umidade"></b>
+			</li>
+			<li>Umidade Máxima:
+				<b id="b_max_umidade"></b>
+			</li>
+			<li>Umidade Mínima:
+				<b id="b_min_umidade"></b>
+			</li>
+			<li>1º Quartil da Umidade:
+				<b id="b_q1H_umidade"></b>
+			</li>
+			<li>Mediana da Umidade:
+				<b id="b_q2H_umidade"></b>
+			</li>
+			<li>3º Quartil da Umidade:
+				<b id="b_q3H_umidade"></b>
+			</li>
+		</ul>
+	</div>
+
+</body>
+
+</html>
+
+
+<script>	
+
+	function iniciar() {
+		carregarUsuario();
+		carregarDadosGrafico();
+		setInterval(carregarMedias, 5000); // define o intervalo de tempo que carrega dados  do banco
+	}
+
+	var chart;//configuração dos graficos 
+
+	google.charts.load('current', { 'packages': ['line'] });
+
+	var materialOptions = {
+		chart: {
+			title: 'Temperatura e Umidade'
+		},
+		width: 700,
+		height: 300,
+		series: {
+			0: {
+				axis: 'temperatura',
+				color: '#FF5733'
+			},
+			1: {
+				axis: 'umidade',
+				color: '#0B7A0B'
+			}
+		},
+		axes: {
+			y: {
+				temperatura: {
+					label: 'Temperatura'
+				},
+				umidade: {
+					label: 'Umidade'
+				}
+			}
+		}
+	};
+
+	google.charts.setOnLoadCallback(() => {
+		chart = new google.charts.Line(document.getElementById('div_grafico'));
+		carregarDadosGrafico();
+		setInterval(carregarDadosGrafico, 5000); // define o intervalo de tempo que carrega dados  do banco
+	});
+
+
+
+	function drawChart(data) {
+		chart.draw(data, materialOptions);
+	}
+
+	function carregarDadosGrafico() {
+		$.ajax({ // função que pega as informações da pagina Routes/leitura onde dentro do programa tem a função ultimas
+			cache: false,
+			method: "get",
+			url: "/leitura/ultimas",
+			success: function (data) {
+				var dataTable = new google.visualization.DataTable(data);
+				drawChart(dataTable);
+			},
+			error: function (e) {
+				console.log("Erro:", e);
+			}
+		});
+	}
+
+	function carregarMedias() {
+		$.ajax({ // função que pega as informações da pagina Routes/leitura onde dentro do programa tem a função medias
+			cache: false,
+			method: "get",
+			url: "/leitura/medias",
+			success: function (data) {
+				$('#b_media_temperatura').html(data.temperatura);
+				$('#b_max_temperatura').html(data.temperatura_max);
+				$('#b_min_temperatura').html(data.temperatura_min);
+				$('#b_q1T_temperatura').html(data.temperatura_q1T);
+				$('#b_q2T_temperatura').html(data.temperatura_q2T);
+				$('#b_q3T_temperatura').html(data.temperatura_q3T);
+				$('#b_media_umidade').html(data.umidade);
+				$('#b_max_umidade').html(data.umidade_max);
+				$('#b_min_umidade').html(data.umidade_min);
+				$('#b_q1H_umidade').html(data.umidade_q1H);
+				$('#b_q2H_umidade').html(data.umidade_q2H);// nomes das varieveis que foram enviadas pela variavel linha
+				$('#b_q3H_umidade').html(data.umidade_q3H);
+			},
+			error: function (e) {
+				console.log("Erro:", e);// exibe mensagem de erro
+			}
+		});
+	}
+
+	function carregarUsuario() {
+		$.ajax({
+			cache: false,
+			method: "get",// função que pega as informações da pagina Routes/leitura onde dentro do programa tem a função sessão 
+			url: "/login/sessao",
+			success: function (data) {
+				$('#b_usuario').html(data.nome);// pega o nome do select feito em leitura
+				$('#div_usuario').show();
+			},
+			error: function (e) {
+				window.location.href = 'login.html';
+			}
+		});
+	}
+
+</script>

@@ -1,0 +1,137 @@
+<script>// Essa é o programa da tela de cadastro </script>
+<html lang="pt-br; en" id="home">
+
+
+<head>
+		<script type="text/javascript" src="jquery.js"></script>
+
+		<script type="text/javascript">	</script>
+		
+		<link rel="shortcut icon" href="imagens/favicon (2).ico" >
+		
+	<title>Cadastro</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!-- jQuery -->
+	<!-- Instala as bibliotecas necessárias (visual e ajax) -->
+	<script src="assets/js/jquery-3.3.1.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<!-- Popper -->
+	<script src="assets/js/popper.min.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<script src="assets/js/bootstrap.js"></script>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="assets/css/font-awesome.css">
+	<script src="assets/js/7df7e1332b.js"></script>
+	<!-- FONTS  -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" href="assets/css/jquery-ui.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- Start of silicon14 Zendesk Widget script -->
+	<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=697c5402-9943-469a-a5a9-3eb79f4e3636"> </script>
+	<!-- End of silicon14 Zendesk Widget script -->
+</head>
+<!-- Essa tag Style é responsavel por colocar a tela de fundo-->
+<style>
+	body {
+
+		background-image: url("imagens/fundo5.jpg");
+
+	}
+</style>
+
+<body id="body" class="bg-dark" width='200'>
+	<center>
+		<!-- Essa tag Style é responsavel por colocar a logo -->
+		<img src="imagens/logo2.png" alt="Logo" width="250" height="220" style="margin-top: -2em">
+	</center>
+	<div class="container">
+		<!-- Essa div é o que gera o fundo das caixas de texto -->
+		<div class="card card-login mx-auto mt-15" style="height: 17cm; width: 12.5cm; margin-bottom: 2em; margin-top: -2em">
+			<div class="card-header" style="background-color: black; color:white">
+				<center style="font-size: 0.7cm">Cadastro de Usuário</center>
+			</div>
+			<div class="card-body">
+				<form id="formCadastro" onsubmit="return cadastrar();">
+					<div class="form-group">
+						<label for="inputName">Nome e sobrenome: </label>
+						<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome e Sobrenome">
+					</div>
+					<div class="form-group">
+						<label for="inputUsername">Usuário: </label>
+						<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário">
+					</div>
+					<div class="form-group">
+						<label for="inputPassword">Senha: </label>
+						
+						<input type="password" class="form-control" id="senha" name="senha" placeholder="Senha">
+					</div>
+					<div class="form-group">
+						<label for="inputEmpresa">Nome da Empresa: </label>
+						<input type="text" class="form-control" id="empresa" name="empresa" placeholder="Nome da Empresa">
+					</div>
+					<div class="form-group">
+						<label for="inputTelefone">Telefone Empresa com DDD: </label>
+						<input type="text" class="form-control phone-ddd-mask" id="telefone" name="telefone" 
+						data-mask="(00)0000-0000" data-mask-selectonfocus="true" maxlength="10" placeholder="Ex.: (00) 0000-0000">
+					</div>
+					<div>
+						<input type="submit" class="form-control btn btn-dark" style="background-color: rgb(53, 53, 53); 
+							color:white" value="Enviar">
+					</div>
+					<span id="span_mensagem" style="display: none;">
+						<center style="color: red">
+							<br>Nome de usuário já cadastrado.</center>
+					</span>
+				</form>
+				<div class="text-right">Já tem um cadastro? Faça
+					<a href="/login.html" style="color:blue">login</a>
+					<!-- botão responsavel pelo redirecionamento para tela de login -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/main.js"></script>
+</body>
+
+</html>
+
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script>
+	function cadastrar() { //if de 'autenticação' de requisitos para cadastro
+		var nome = document.getElementById('nome').value;
+		var usuario = document.getElementById('usuario').value;
+		var senha = document.getElementById('senha').value;
+		var empresa = document.getElementById('empresa').value;
+		var telefone = document.getElementById('telefone').value;
+		if (nome.length < 7 || usuario.length < 3 || senha.length < 6 || telefone.length < 7) {
+			alert('Use seis ou mais caracteres no Nome/Usuario/Senha.'); // mensagem de requisitos de cadastro
+		} else {
+			var dados = $('#formCadastro').serialize();
+			$.ajax({//função que redireciona os dados p/ routes/cadastro
+				url: "/cadastro",
+				type: 'POST',
+				data: dados
+			})
+				.done(function (resposta) { //se conseguir cadastrar no banco redireciona p/ tela de login
+					console.log(resposta);
+					window.location.href = '/login.html';
+				})
+				.fail(function (jqXHR, textStatus) { //se não conseguir exibe mensagem de erro na tela
+					$('#span_mensagem').show();
+					console.log(error);
+				});
+
+			return false;
+		}
+	}
+
+</script>

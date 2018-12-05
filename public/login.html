@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br; en" id="home">
+
+<head>
+		<script type="text/javascript" src="jquery.js"></script>
+
+		<script type="text/javascript"></script>
+		
+		<link rel="shortcut icon" href="imagens/favicon (2).ico" >
+		
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!-- jQuery -->
+	<!-- bibliotecas do html -->
+	<script src="assets/js/jquery-3.3.1.min.js"></script>
+	<script src="assets/js/jquery-ui.js"></script>
+	<!-- Popper -->
+	<script src="assets/js/popper.min.js"></script>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<script src="assets/js/bootstrap.js"></script>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="assets/css/font-awesome.css">
+	<script src="assets/js/7df7e1332b.js"></script>
+	<!-- FONTS  -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" href="assets/css/jquery-ui.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- Start of silicon14 Zendesk Widget script -->
+	<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=697c5402-9943-469a-a5a9-3eb79f4e3636"> </script>
+	<!-- End of silicon14 Zendesk Widget script -->
+</head>
+<!-- tela de fundo -->
+<style>
+	body {
+		background-image: url("imagens/fundo5.jpg");
+
+	}
+</style>
+
+<body id="body" class="bg-dark" width='200'>
+	<!-- insere a logo na tela -->
+	<center>
+		<img src="imagens/logo2.png" alt="Logo" width="250" height="220" style="margin-top: -2em">
+	</center>
+	<div class="container">
+		<div class="card card-login mx-auto mt-15" style="height: 9,5cm; width: 10cm; margin-bottom: 2em">
+			<div class="card-header" style="background-color: black; color:white; font-size: 0.7cm">
+				<center>Login</center>
+			</div>
+			<div class="card-body">
+				<form id="formLogin" method="post" onsubmit="autenticar(); return false;">
+					<div class="form-group">
+						<label for="loginUsername">Usuário: </label>
+						<input type="text" class="form-control" id="login" name="login">
+					</div>
+					<div class="form-group">
+						<label for="loginPassword">Senha: </label>
+						<input type="password" class="form-control" id="senha" name="senha">
+					</div>
+					<div>
+						<input type="submit" class="form-control btn btn-dark" style="background-color: rgb(53, 53, 53); 
+							color:white" value="Entrar">
+					</div>
+				</form>
+				<br>
+				<!-- redireciona para tela de cadastro -->
+				<div class="text-right">Não possui uma conta?
+					<a href="/form.html" style="color:blue">Cadastre-se</a>
+				</div>
+				<center>
+					<span id="span_mensagem" style="display: none; color: red">Usuario e/ou senha invalidos</span>
+				</center>
+			</div>
+		</div>
+	</div>
+	<script src="assets/js/main.js"></script>
+</body>
+
+</html>
+<script>
+	function autenticar() {
+		var dados = $('#formLogin').serialize();
+
+		$.ajax({// função que pega dados de login
+			url: "/login",
+			type: 'POST',
+			data: dados
+		})
+			.done(function (resposta) {
+				window.location.href = 'grafico.html';//se autenticado redireciona para tela de gráfico
+			})
+			.fail(function (jqXHR, textStatus) {
+				$('#span_mensagem').show();//senão exibe mensagem de erro
+			});
+
+		return false;
+	}
+
+</script>

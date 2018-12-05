@@ -1,0 +1,31 @@
+{
+  "name": "node-azure",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "watch": "nodemon ./bin/www",
+    "oi": "echo oi"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "cryptr": "^4.0.0",
+    "debug": "~2.6.9",
+    "ejs": "^2.6.1",
+    "errors": "^0.3.0",
+    "event-stream": "3.3.4",
+    "events": "^3.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "http-errors": "^1.6.3",
+    "jquery": "^3.3.1",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
+    "morgan": "~1.9.0",
+    "mssql": "^4.2.2",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.4",
+    "serialport": "^7.1.0",
+    "tedious": "^3.0.1"
+  }
+}
